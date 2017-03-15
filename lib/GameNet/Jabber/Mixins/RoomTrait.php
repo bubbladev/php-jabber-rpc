@@ -100,6 +100,22 @@ trait RoomTrait
     }
 
     /**
+     * Delete all inactive MUC rooms.
+     *
+     * @param integer $days The days inacgive to be deleted.
+     */
+    public function deleteInactiveRooms($days)
+    {
+        $this->sendRequest(
+            'rooms_unused_destroy',
+            [
+                'host' => $this->host,
+                'days' => $days,
+            ]
+        );
+    }
+
+    /**
      * List existing rooms.
      *
      * @return array Return array like ['room1@conference.j.test.dev', 'room2@conference.j.test.dev', ...]
